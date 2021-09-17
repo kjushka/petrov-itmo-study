@@ -44,7 +44,7 @@ def parse_article(article):
     link = ''
     title = ''
     if postLink != None:
-        startUrl = 'https://habr.com/'
+        startUrl = 'https://habr.com'
         href = postLink['href']
         link = startUrl+href
         title = postLink.get_text()
