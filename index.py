@@ -2,6 +2,7 @@ import requests as reqs
 from bs4 import BeautifulSoup as bs
 import re
 import csv
+import sys
 
 from requests.api import post
 
@@ -11,6 +12,9 @@ def get_pages_count(url):
         print('data status: {}'.format(data.status_code))
         return None
     bsObj = bs(data.content, 'html.parser')
+    empty = bsObj.find('div', {'class' : 'tm-empty-placeholder'})
+    if empty != None:
+        return None
     pages = bsObj.find('div', {'class': 'tm-pagination__pages'}).children
     elem = None
     for el in pages:
@@ -54,13 +58,17 @@ def write_to_csv(articlesData, outPath):
         for line in articlesData:
             writer.writerow(line)
 
-
-homePostsUrl = 'https://habr.com/ru/search/?q=WebAssembly&target_type=posts&order=relevance'
-maxPage = get_pages_count(homePostsUrl)
-pagesUrl = 'https://habr.com/ru/search/page{}/?q=WebAssembly&target_type=posts&order=relevance'
+query = input('Enter your query:\n')
+preparedQuery = query.replace(' ', '%20')
+homePostsUrl = 'https://habr.com/ru/search/?q={}&target_type=posts&order=relevance'
+maxPage = get_pages_count(homePostsUrl.format(preparedQuery))
+if maxPage == None:
+    print('No result with query: {}'.format(query))
+    sys.exit()
+pagesUrl = 'https://habr.com/ru/search/page{}/?q={}&target_type=posts&order=relevance'
 articlesData = [];
 for page in range (1, int(maxPage) + 1):
-    pageUrl = pagesUrl.format(str(page))
+    pageUrl = pagesUrl.format(str(page), preparedQuery)
     articles = get_articles(pageUrl)
     if articles == None:
         continue
