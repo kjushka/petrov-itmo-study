@@ -4,17 +4,22 @@
     <meta name="viewport" content="width=device-width"/>
     <title>Портфолио Петрова Антона</title>
     <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-    <div>Карточка студента</div>
+    <h1 class="title is-2">Карточка студента</h1>
     <div onclick="location.href='https://vk.com/kjushka';">
-        <img class="avatar-image" src="avatar.jpg" alt="avatar"/>
-        <div>Петров Антон</div>
+        <figure class="image is-4by5">
+            <img src="avatar.jpg" alt="avatar"/>
+        </figure>
+        <div class="title is-3">Петров Антон</div>
     </div>
-    <div>Задания</div>
-    <div>
-        <button onclick="location.href='./task_xsl/task_xsl_1/math.xml';">Задание xsl 1.1</button>
-        <button onclick="location.href='./task_xsl/task_xsl_2/svg.xml';">Задание xsl 1.2</button>
+    <div class="tasks">
+        <h3 class="title is-4">Задания</h3>
+        <div class="tasks-buttons">
+            <button class="button is-link" onclick="location.href='./task_xsl/task_xsl_1/math.xml';">Задание xsl 1.1</button>
+            <button class="button is-link" onclick="location.href='./task_xsl/task_xsl_2/svg.xml';">Задание xsl 1.2</button>
+        </div>
     </div>
 </body>
 </html>

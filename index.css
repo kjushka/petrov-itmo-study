@@ -1,3 +1,30 @@
-.avatar-image {
-    width: 400px;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    border-radius: 10%;
+}
+
+.tasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tasks-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 540px;
+    flex-wrap: wrap;
+}
+
+.tasks-buttons div{
+    width: 100px;
 }
